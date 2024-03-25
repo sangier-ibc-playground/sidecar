@@ -16,4 +16,3 @@ config="$HOME/testing/hermes/config.toml"
 [chain3]
   gaiad_binary="$HOME/testing/bin/chain3/simd"
   ports_start_at=27020
-s
