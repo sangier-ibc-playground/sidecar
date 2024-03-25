@@ -1,0 +1,19 @@
+[global]
+add_to_hermes=true
+
+[global.hermes]
+binary="$HOME/testing/hermes/hermes"
+config="$HOME/testing/hermes/config.toml"
+
+[chain1]
+  gaiad_binary="$HOME/testing/bin/chain1/simd"  
+  ports_start_at=27000
+
+[chain2]
+  gaiad_binary="$HOME/testing/bin/chain2/simd" 
+  ports_start_at=27010
+
+[chain3]
+  gaiad_binary="$HOME/testing/bin/chain3/simd"
+  ports_start_at=27020
+s
