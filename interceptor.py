@@ -5,6 +5,7 @@ import time
 import requests
 import subprocess
 import os
+import base64
 
 # Replace these with the appropriate values for your setup
 NODE_RPC_URL = "ws://localhost:27020/websocket"
@@ -13,30 +14,36 @@ COMETBFT_RPC_URL = "http://localhost:27010/broadcast_tx_commit"
 WORKING_DIRECTORY = "/Users/stefanoangieri/testing/bin/chain2"
 
 def reconstruct_message(attributes):
-    # Reconstruct the message structure to match the IBC transfer message format
+    # Construct the message structure to match the MsgSendPacket message format
     message = {
         "body": {
             "messages": [
                 {
-                    "@type": "/ibc.applications.transfer.v1.MsgSendPacket",
+                    "@type": "/ibc.core.channel.v1.MsgSendPacket",
                     "source_port": attributes["source_port"],
-                    "source_channel": attributes["source_channel"],
-                    "token": {
-                        "denom": json.loads(attributes["packet_data"])["denom"],
-                        "amount": json.loads(attributes["packet_data"])["amount"],
-                    },
-                    # Use the specific address as the sender
-                    "sender": "cosmos1vg6nqau0lu5yhkdh60v8saaqqtz0ect30estxe",
-                    "receiver": json.loads(attributes["packet_data"])["receiver"],
+                    "source_channel": "channel-1",
                     "timeout_height": {
-                        "revision_number": "0",
-                        "revision_height": attributes["timeout_height"].split("-")[1],
+                        "revision_number": int(attributes["timeout_height"].split("-")[0]),  # Ensuring it's an integer
+                        "revision_height": int(attributes["timeout_height"].split("-")[1]),  # Ensuring it's an integer
                     },
-                    "timeout_timestamp": attributes["timeout_timestamp"],
-                    "memo": "",
+                    "timeout_timestamp": int(attributes["timeout_timestamp"]),  # Ensuring it's an integer
+                    "packet": {
+                        "sequence": int(attributes.get("sequence", 1)),  # Ensuring it's an integer
+                        "source_port": attributes["source_port"],
+                        "source_channel": "channel-1",
+                        "destination_port": "transfer",  # Fill in destination port
+                        "destination_channel": "channel-0",  # Fill in destination channel
+                        "data": base64.b64encode(json.dumps(attributes["packet_data"]).encode()).decode(),  # Encoding data as base64
+                        "timeout_height": {
+                            "revision_number": int(attributes["timeout_height"].split("-")[0]),  # Ensuring it's an integer
+                            "revision_height": int(attributes["timeout_height"].split("-")[1]),  # Ensuring it's an integer
+                        }, 
+                    "timeout_timestamp": int(attributes["timeout_timestamp"]),
+                    },
+                    "signer": "cosmos1vg6nqau0lu5yhkdh60v8saaqqtz0ect30estxe",  # Adjust signer if necessary
                 }
             ],
-            "memo": "",
+            "memo": "",  # Fill in memo if necessary
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": [],
@@ -71,7 +78,7 @@ def sign_message(cometbft_message):
           f"--chain-id chain2 " \
           f"--keyring-backend test " \
           f"--home ../../gm/chain2 " \
-          f"--node tcp://localhost:27010 > {signed_transaction_file}"
+          f"--node tcp://localhost:27010 > {signed_transaction_file} "
 
     # Execute the command
     subprocess.run(cmd, shell=True)
@@ -80,8 +87,25 @@ def sign_message(cometbft_message):
     with open(os.path.join(WORKING_DIRECTORY, signed_transaction_file), 'r') as f:
         signed_msg = json.load(f)
 
+    # Encode the transaction
+    encoded_transaction = encode_transaction(signed_msg)
+
+    # Broadcast the encoded transaction
+    broadcast_transaction(encoded_transaction)
+
     print("Signed message:", signed_msg)
     return signed_msg
+
+def encode_transaction(transaction):
+    # Encode the transaction using the provided command
+    cmd = f"simd tx encode - --from=json <<< '{json.dumps(transaction)}'"
+    encoded_transaction = subprocess.check_output(cmd, shell=True)
+    return encoded_transaction.decode("utf-8")
+
+def broadcast_transaction(encoded_transaction):
+    # Broadcast the encoded transaction
+    cmd = f"simd tx broadcast - --broadcast-mode async <<< '{encoded_transaction}'"
+    subprocess.run(cmd, shell=True)
 
 def on_message(ws, message):
     print("Received a message:")
@@ -102,7 +126,7 @@ def on_message(ws, message):
                     print(json.dumps(reconstructed_message, indent=2))
                     print("------------")
 
-                    # Sign the message
+                    # Sign and broadcast the message
                     signed_msg = sign_message(reconstructed_message)
 
                     # Send the signed message to CometBFT RPC
@@ -138,4 +162,3 @@ if __name__ == "__main__":
                                 on_error=on_error,
                                 on_close=on_close)
     ws.run_forever()
-
