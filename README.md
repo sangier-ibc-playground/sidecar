@@ -2,7 +2,7 @@
 
 This repo contains:
 
-- The testing directory used for this PoC which should be placed under the $HOME folder.
+- The testing directory used for this PoC should be placed under the $HOME folder.
 - The interceptor code in Python.
 
 To set up the environment follow this [tutorial](https://github.com/cosmos/ibc-go/blob/aad87e25c17697af23b1b227b0de3de4ee9d3a27/docs/tutorials/02-channel-upgrades/01-intro.md). 
@@ -12,6 +12,16 @@ To set up the environment follow this [tutorial](https://github.com/cosmos/ibc-g
 ![Image](PoC_Config.png)
 
 [Escalidraw Link](https://excalidraw.com/#json=sZVo3L-I1TA4cB5HYJSeT,wk8CTC3vmj5vbuVKqhO09Q)
+
+Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1
+Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2
+Use [chain3](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-tranfer-app) to generate the simd binary of chain3
+
+### Setup 
+
+Run gm start 
+
+
 
 ## Useful commands
 
@@ -60,7 +70,7 @@ establish connection and ics20 channel:
 --b-port transfer \
 --new-client-connection`
 
-`start relayer: `hermes --config config.toml start`
+start relayer: `hermes --config config.toml start`
 ---
 
 Commands for Tx from V3 to V1
