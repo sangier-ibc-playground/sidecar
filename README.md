@@ -11,7 +11,7 @@ To set up the environment follow this [tutorial](https://github.com/cosmos/ibc-g
 
 ![Image](PoC_Config.png)
 
-[Escalidraw Link](https://excalidraw.com/#json=sZVo3L-I1TA4cB5HYJSeT,wk8CTC3vmj5vbuVKqhO09Q)
+[Escalidraw Link](https://excalidraw.com/#json=MXyV5YBJ3uRKTKJa2Lbo2,Mh5NL_M4mjD91nINhk2Dww)
 
 Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1
 Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2
