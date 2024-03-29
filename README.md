@@ -17,6 +17,7 @@ To set up the environment follow this [tutorial](https://github.com/cosmos/ibc-g
 
 Commands to setup keys
 ---
+Validators
 `export VALIDATOR_CHAIN1=$(simd keys show validator -a \
 --keyring-backend test \
 --home ../../gm/chain1) && echo $VALIDATOR_CHAIN1;
@@ -27,6 +28,7 @@ export VALIDATOR_CHAIN3=$(simd keys show validator -a \
 --keyring-backend test \
 --home ../../gm/chain3) && echo $VALIDATOR_CHAIN3;`
 
+Relayers
 `export RLY_CHAIN1=$(simd keys show wallet -a \
 --keyring-backend test \
 --home ../../gm/chain1) && echo $RLY_CHAIN1;
@@ -69,18 +71,18 @@ Commands for Tx from V3 to V1
 --keyring-backend test \
 --home ../../gm/chain3 \
 --node tcp://localhost:27020 \
---generate-only > transfer.json``
+--generate-only > transfer.json`
 
 `simd tx sign transfer.json \
 --from $VALIDATOR_CHAIN3 \
 --chain-id chain3 \
 --keyring-backend test \
 --home ../../gm/chain3 \
---node tcp://localhost:27020 > signed.json``
+--node tcp://localhost:27020 > signed.json`
 
 `simd tx broadcast signed.json \
 --home ../../gm/chain3 \
---node tcp://localhost:27020``
+--node tcp://localhost:27020`
 ---
 
 Commands for Tx from V1 to V2
@@ -102,7 +104,7 @@ Commands for Tx from V1 to V2
 
 `simd tx broadcast signed.json \
 --home ../../gm/chain1 \
---node tcp://localhost:27000``
+--node tcp://localhost:27000`
 ---
 
 Check balance
