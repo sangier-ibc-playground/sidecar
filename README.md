@@ -9,7 +9,7 @@ To set up the environment follow this [tutorial](https://github.com/cosmos/ibc-g
 
 ## Configuration Design
 
-![Image](./PoC_Config.png)
+![Image](PoC_Config.png)
 
 [Escalidraw Link](https://excalidraw.com/#json=sZVo3L-I1TA4cB5HYJSeT,wk8CTC3vmj5vbuVKqhO09Q)
 
