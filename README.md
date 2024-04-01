@@ -16,7 +16,7 @@ This poc uses the ibc-transfer module on C3 and ibc-go on C2 for packet commitme
 
 ![Image](PoC_Config.png)
 
-[Escalidraw Link with concerns and to be explored section](https://excalidraw.com/#json=ZxCorhZ4nBLodIXdPbkM2,9eIqVWDonmtmA3PGFucmXA)
+[Escalidraw Link](https://excalidraw.com/#json=G1fNQZs42JVSBmTg-o6tz,6RPTV5VFriCtIjALeTfL2g)
 
 - Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1.
 - Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/1).
@@ -116,6 +116,7 @@ simd q bank balances $VALIDATOR_CHAIN3 --node http://localhost:27020
 
 ## To be explored
 
+- Channel capabilities. For now, I commented out the code doing capabilities verification on C2.
 - Tx workflow from C1 to C3. We would probably need to create a new msg.
 - Interceptor security model.
 - PoC replication with a DLT system distinct from cosmos for chain3. For now we are using C3 account as the sender account in the Tx between C2 and C1. What happens when we want to do the same but with a DLT system having a different
@@ -124,9 +125,3 @@ account system?
 ## Concerns
 
 - The ibc-transfer app only works with a connection and channel established. Ideally, we need to decouple app layer and ibc-go layer.
-- Channel capabilities. For now, I commented out the code doing capabilities verification.
-
-
-
-
-
