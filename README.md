@@ -113,3 +113,20 @@ simd q bank balances $VALIDATOR_CHAIN2 --node http://localhost:27010
 ```bash
 simd q bank balances $VALIDATOR_CHAIN3 --node http://localhost:27020
 ```
+
+## To be explored
+
+- Tx workflow from C1 to C3. We would probably need to create a new msg.
+- Interceptor security model.
+- PoC replication with a DLT system distinct from cosmos for chain3. For now we are using C3 account as the sender account in the Tx between C2 and C1. What happens when we want to do the same but with a DLT system having a different
+account system?
+
+## Concerns
+
+- The ibc-transfer app only works with a connection and channel established. Ideally, we need to decouple app layer and ibc-go layer.
+- Channel capabilities. For now, I commented out the code doing capabilities verification.
+
+
+
+
+
