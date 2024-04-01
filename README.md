@@ -11,9 +11,9 @@ This repo contains:
 
 [Escalidraw Link](https://excalidraw.com/#json=MXyV5YBJ3uRKTKJa2Lbo2,Mh5NL_M4mjD91nINhk2Dww)
 
-Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1.
-Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/1).
-Use [chain3](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-tranfer-app) to generate the simd binary of chain3. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/2).
+- Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1.
+- Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/1).
+- Use [chain3](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-tranfer-app) to generate the simd binary of chain3. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/2).
 
 ### Setup
 
