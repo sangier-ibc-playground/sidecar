@@ -1,9 +1,16 @@
 # Sidecar PoC
 
+## Repo content
+
 This repo contains:
 
 - The testing directory used for this PoC. It should be placed under the $HOME folder.
 - The interceptor code in Python.
+
+## PoC Goal
+
+Demonstrate that we can execute an ibc transfer from C3 to C1 via C2.
+This poc uses the ibc-transfer module on C3 and ibc-go on C2 for packet commitments.
 
 ## Configuration Design
 
