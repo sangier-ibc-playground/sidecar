@@ -2,14 +2,14 @@
 
 This repo contains:
 
-- The testing directory used for this PoC should be placed under the $HOME folder.
+- The testing directory used for this PoC. It should be placed under the $HOME folder.
 - The interceptor code in Python.
 
 ## Configuration Design
 
 ![Image](PoC_Config.png)
 
-[Escalidraw Link](https://excalidraw.com/#json=MXyV5YBJ3uRKTKJa2Lbo2,Mh5NL_M4mjD91nINhk2Dww)
+[Escalidraw Link with concerns and to be explored section](https://excalidraw.com/#json=ZxCorhZ4nBLodIXdPbkM2,9eIqVWDonmtmA3PGFucmXA)
 
 - Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1.
 - Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/1).
