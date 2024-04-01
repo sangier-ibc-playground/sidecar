@@ -16,7 +16,7 @@ This poc uses the ibc-transfer module on C3 and ibc-go on C2 for packet commitme
 
 ![Image](PoC_Config.png)
 
-[Escalidraw Link](https://excalidraw.com/#json=G1fNQZs42JVSBmTg-o6tz,6RPTV5VFriCtIjALeTfL2g)
+[Escalidraw Link](https://excalidraw.com/#json=ku--NqFpBJyQ3ZwGZ0FP7,5c7xXgZMlLFDs8M7u0hLPA)
 
 - Use [chain1](https://github.com/sangier-ibc-playground/ibc-go/tree/main) to generate the simd binary of chain1.
 - Use [chain2](https://github.com/sangier-ibc-playground/ibc-go/tree/stefano/async-send-packet-ibc-go) to generate the simd binary of chain2. Changes to the ibc-go codebase can be checked in this [PR](https://github.com/sangier-ibc-playground/ibc-go/pull/1).
